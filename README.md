@@ -7,7 +7,7 @@ At the moment it only works for Illinois driver's licenses, but that's only beca
 What you will need:
 - Visual studio (I used 2013 express, but other versions should work as well)
 
-To open the code in visual studio, go to visual studio, click on open, then select the solution (.sln) file and open it. When you want to compile, click the arrow next to the "Debug" button (it's to the right of the big "Start" button with the green arrow), and select "Release", then click "Start". If you are not done with editing the code, but want to test it, leave the compile option to "Debug".
+To open the code in visual studio, go to visual studio, click on open, then select the solution (.sln) file and open it. In the solution explorer to the right of the screen, click on "Program.cs", which is the actual code. When you want to compile, click the arrow next to the "Debug" button (it's to the right of the big "Start" button with the green arrow), and select "Release", then click "Start". If you are not done with editing the code, but want to test it, leave the compile option to "Debug".
 
 Also do not edit the "Soundex.cs" file, as nothing in it needs to be changed. 
 
