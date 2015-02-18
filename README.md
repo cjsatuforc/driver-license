@@ -16,4 +16,4 @@ If you have any questions about this, or need help editing something, feel free 
 
 <h1>Contributors</h1>
 Feel free to add your name and github link here if you contributed. Also add what you did to contribute. 
-- <a href="https://github.com/dragonbanshee">dragonbanshee (project creator, encoded Illinois, Wisconsin, Illinois)</url>
+- <a href="https://github.com/dragonbanshee">dragonbanshee (project creator, encoded Illinois, Wisconsin, Florida)</url>
