@@ -14,18 +14,23 @@ namespace DriversLicense
             bool repeat = true;
             while (repeat)
             {
+                Console.WriteLine("What is your state? (IL/WI/FL)");
+                string State = Console.ReadLine();
+
                 Console.WriteLine("What is your first name?");
                 string FirstName = Console.ReadLine();
                 string FirstInitial = FirstName.Substring(0, 1);
                 Console.WriteLine("What is your middle initial?");
                 string MiddleInitial = Console.ReadLine();
 
-                NameConvert(FirstName, FirstInitial, MiddleInitial);
+                NameConvert(State, FirstName, FirstInitial, MiddleInitial);
 
                 Console.WriteLine("What is your last name?");
                 string LastName = Console.ReadLine();
                 LastName = Soundex.Compute(LastName);
-                License.Number = License.Number.Replace("BBBB", LastName);
+                if (State == "IL") License.Illinois = License.Illinois.Replace("BBBB", LastName);
+                else if (State == "FL") License.Florida = License.Florida.Replace("BBBB", LastName);
+                else if (State == "WI") License.Wisconsin = License.Wisconsin.Replace("BBBB", LastName);
 
 
                 Console.WriteLine("What is your birthdate? (MM/DD/YYYY)(include all zeros)");
@@ -44,47 +49,118 @@ namespace DriversLicense
                 }
                 string X = Birthday.Substring(8, 1);
                 string Y = Birthday.Substring(9, 1);
-                License.Number = License.Number.Replace("X", X);
-                License.Number = License.Number.Replace("Y", Y);
-
+                if (State == "IL")
+                {
+                    License.Illinois = License.Illinois.Replace("X", X);
+                    License.Illinois = License.Illinois.Replace("Y", Y);
+                }
+                else if (State == "WI")
+                {
+                    License.Wisconsin = License.Wisconsin.Replace("X", X);
+                    License.Wisconsin = License.Wisconsin.Replace("Y", Y);
+                }
+                else if (State == "FL")
+                {
+                    License.Florida = License.Florida.Replace("X", X);
+                    License.Florida = License.Florida.Replace("Y", Y);
+                }
                 string birth_month = Birthday.Substring(0, 2);
                 string birth_day = Birthday.Substring(3, 2);
 
                 Console.WriteLine("What is your gender? Male/Female");
                 bool genunident = true;
-                int gender = 0;
+                int il_gender = 0;
+                int fl_gender = 0;
+                int wi_gender = 0;
                 while (genunident)
                 {
                     var Gender = Console.ReadLine();
-
-                    switch (Gender)
+                    if (State == "IL")
                     {
-                        case "Male":
-                            gender = 0;
-                            genunident = false;
-                            break;
-                        case "Female":
-                            gender = 600;
-                            genunident = false;
-                            break;
-                        default:
-                            Console.WriteLine("Your gender was not valid. Please type it again.");
-                            genunident = true;
-                            break;
+                        switch (Gender)
+                        {
+                            case "Male":
+                                il_gender = 0;
+                                genunident = false;
+                                break;
+                            case "Female":
+                                il_gender = 600;
+                                genunident = false;
+                                break;
+                            default:
+                                Console.WriteLine("Your gender was not valid. Please type it again.");
+                                genunident = true;
+                                break;
+                        }
+                    }
+                    else if (State == "WI")
+                    {
+                        switch (Gender)
+                        {
+                            case "Male":
+                                wi_gender = 0;
+                                genunident = false;
+                                break;
+                            case "Female":
+                                wi_gender = 500;
+                                genunident = false;
+                                break;
+                            default:
+                                Console.WriteLine("Your gender was not valid. Please type it again.");
+                                genunident = true;
+                                break;
+                        }
+                    }
+                    else if (State == "FL")
+                    {
+                        switch (Gender)
+                        {
+                            case "Male":
+                                fl_gender = 0;
+                                genunident = false;
+                                break;
+                            case "Female":
+                                fl_gender = 500;
+                                genunident = false;
+                                break;
+                            default:
+                                Console.WriteLine("Your gender was not valid. Please type it again.");
+                                genunident = true;
+                                break;
+                        }
                     }
                 }
                 int birthMonth = Convert.ToInt32(birth_month);
                 int birthDay = Convert.ToInt32(birth_day);
 
-                int birth_equ = (birthMonth - 1) * 31 + birthDay + gender;
+                int il_birth_equ = (birthMonth - 1) * 31 + birthDay + il_gender;
+                int fl_birth_equ = (birthMonth - 1) * 40 + birthDay + fl_gender;
+                int wi_birth_equ = (birthMonth - 1) * 40 + birthDay + wi_gender;
+                string birthEquIL = il_birth_equ.ToString();
+                string birthEquWI = wi_birth_equ.ToString();
+                string birthEquFL = fl_birth_equ.ToString();
 
-                string birthEqu = birth_equ.ToString();
+                if (birthEquIL.Length < 3) birthEquIL = birthEquIL.PadLeft(3, '0');
+                if (birthEquWI.Length < 3) birthEquWI = birthEquWI.PadLeft(3, '0');
+                if (birthEquFL.Length < 3) birthEquFL = birthEquFL.PadLeft(3, '0');
 
-                if (birthEqu.Length < 3) birthEqu = birthEqu.PadLeft(3, '0');
+                if (State == "IL")
+                {
+                    License.Illinois = License.Illinois.Replace("EEE", birthEquIL);
+                    Console.WriteLine("Your Illinois license number is " + License.Illinois);
+                }
+                else if (State == "FL")
+                {
+                    License.Florida = License.Florida.Replace("EEE", birthEquFL);
+                    Console.WriteLine("Your Florida license number is " + License.Florida + ". The overflow (the ? at the end) can not be determined.");
+                }
+                else if (State == "WI")
+                {
+                    License.Wisconsin = License.Wisconsin.Replace("EEE", birthEquWI);
+                    Console.WriteLine("Your Wisconsin license number is " + License.Wisconsin + ". The overflow (the ?? at the end) can not be determined.");
+                }
 
-                License.Number = License.Number.Replace("EEE", birthEqu);
-
-                Console.WriteLine("Your Illinois license number is " + License.Number);
+                
                 Console.WriteLine("Try again? y/n");
                 bool unident = true;
                 while (unident)
@@ -94,7 +170,9 @@ namespace DriversLicense
                     {
                         unident = false;
                         repeat = true;
-                        License.Number = "BBBB-CCCX-YEEE";
+                        License.Illinois = "BBBB-CCCX-YEEE";
+                        License.Wisconsin = "BBBB-CCCX-YEEE-??";
+                        License.Florida = "BBBB-CCC-XY-EEE-?";
                     }
                     else if (Again == "n")
                     {
@@ -110,7 +188,7 @@ namespace DriversLicense
             }
         }
 
-        private static void NameConvert(string firstname, string firstinitial, string middleinitial)
+        private static void NameConvert(string state, string firstname, string firstinitial, string middleinitial)
         {
             int first_init = 0;
             int middle_init = 0;
@@ -449,12 +527,16 @@ namespace DriversLicense
             int FirstAndMiddleInt = first_init + middle_init;
             string FirstAndMiddleStr = FirstAndMiddleInt.ToString();
             if (FirstAndMiddleStr.Length < 5) FirstAndMiddleStr = FirstAndMiddleStr.PadLeft(3, '0');
-            License.Number = License.Number.Replace("CCC", FirstAndMiddleStr);
+            if (state == "IL") License.Illinois = License.Illinois.Replace("CCC", FirstAndMiddleStr);
+            else if (state == "WI") License.Wisconsin = License.Wisconsin.Replace("CCC", FirstAndMiddleStr);
+            else if (state == "FL") License.Florida = License.Florida.Replace("CCC", FirstAndMiddleStr);
         }
     }
 
     public static class License
     {
-        public static string Number = "BBBB-CCCX-YEEE";
+        public static string Illinois = "BBBB-CCCX-YEEE";
+        public static string Wisconsin = "BBBB-CCCX-YEEE-??";
+        public static string Florida = "BBBB-CCC-XY-EEE-?";
     }
 }		
