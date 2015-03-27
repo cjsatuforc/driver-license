@@ -1,3 +1,5 @@
+https://travis-ci.org/dragonbanshee/driver-license.svg?branch=master
+
 # driver-license
 A program that takes user information and converts it into a driver's license number.
 
