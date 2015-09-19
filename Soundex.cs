@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace DriversLicense
 {
@@ -11,10 +6,10 @@ namespace DriversLicense
     {
         public static string Compute(string word)
         {
-            return Compute(word, 4);
+            return _Compute(word, 4);
         }
 
-        public static string Compute(string word, int length)
+        public static string _Compute(string word, int length)
         {
             string value = "";
             int size = word.Length;
