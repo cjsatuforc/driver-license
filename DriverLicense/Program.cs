@@ -195,4 +195,4 @@ namespace DriversLicense
         public static string Wisconsin = "BBBB-CCCX-YEEE-??";
         public static string Florida = "BBBB-CCC-XY-EEE-?";
     }
-}		
+}

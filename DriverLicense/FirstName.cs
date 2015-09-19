@@ -4,7 +4,7 @@ namespace DriversLicense
 {
     class FirstName
     {
-         public static string NameConvert(string state, string firstname, string firstinitial, string middleinitial)
+        public static string NameConvert(string state, string firstname, string firstinitial, string middleinitial)
         {
             int first_init = 0;
             int middle_init = 0;

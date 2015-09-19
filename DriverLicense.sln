@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DriverLicense", "DriverLicense.csproj", "{EA9435C1-F8E4-4549-88EF-E9724B73FC8B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DriverLicense", "DriverLicense\DriverLicense.csproj", "{0BAD0522-B45F-4C29-AA0F-2F7FFEC6752E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EA9435C1-F8E4-4549-88EF-E9724B73FC8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EA9435C1-F8E4-4549-88EF-E9724B73FC8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EA9435C1-F8E4-4549-88EF-E9724B73FC8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EA9435C1-F8E4-4549-88EF-E9724B73FC8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BAD0522-B45F-4C29-AA0F-2F7FFEC6752E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BAD0522-B45F-4C29-AA0F-2F7FFEC6752E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BAD0522-B45F-4C29-AA0F-2F7FFEC6752E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BAD0522-B45F-4C29-AA0F-2F7FFEC6752E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
